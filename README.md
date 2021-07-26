@@ -52,6 +52,7 @@ Import the python module "**combination_table**", and then create an instance of
 495
 >>> print(cnk.combination(0, 0))
 1
+>>> # now try to break it...
 >>> print(cnk.combination(1001, 1)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
