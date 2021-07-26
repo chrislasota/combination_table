@@ -1,6 +1,7 @@
 ### The problem
 
 If you have **n** unique items and choose **k** of them without replacement, and you *don't care about the order* in which they were selected (e.g. jackpot lottery numbers), then the number of ways to form such **combinations** is
+
 ![Binomial coefficients](binomial_coefficients.png)
 
 These values are also known as **binomial coefficients**.
@@ -9,7 +10,7 @@ For example, the number of 5-card hands you can draw from a 52-card deck is
 
 ![C(52, 5)](poker_hands.png)
 
-If your application requires many values for *C(n,k)*, then efficiency is a serious concern.  If we calculate the value of *C(n,k)* every time we needed it, we encounter a number of potential inefficiencies:
+If your application requires many values for *C(n,k)*, then efficiency is a serious concern.  If we explicitly calculated the value of *C(n,k)* every time we needed it, we would encounter a number of potential inefficiencies:
 
  - Calling a function to compute a factorial directly is inefficient
  - Representing large integers in memory can be challenging
@@ -31,9 +32,9 @@ etc....
 
 ---
 
-The Python code presented here in module "combination_table.py" provides a class to implement this lookup table for *C(n,k)*.
+The Python code presented here in module file "**combination_table.py**" provides a class to implement this lookup table for *C(n,k)*.
 
-In general, you import the python module "combination_table", and then create an instance of the **CombinationTable** object, specifying the largest value of n you will need:
+Import the python module "**combination_table**", and then create an instance of the **CombinationTable** class, specifying the largest value of n you will need:
 
 ```python
 >>> from combination_table import CombinationTable
@@ -60,5 +61,5 @@ Exception: Error in combination(n,k) : n must be between 0 and 1000
 ```
 Notice that the time taken to create and populate a very large lookup table is *extremely short* compared to the time required if factorials, multiplication, or division were used.  If you can afford the memory space, then it becomes amazingly efficient -- in Python -- to pre-compute **all** of the *C(n,k)* values you might need and save them in a lookup table rather than computing individual ones as they are needed.
 
-Included in this repository is a Python file "test_combination_table.py" to output all of the values of *C(n,k)* up to some MAX_N value set in the file.
+Included in this repository is a Python file "**test_combination_table.py**" to output all of the values of *C(n,k)* up to some MAX_N value set in the file.
 
