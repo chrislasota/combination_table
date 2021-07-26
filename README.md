@@ -1,13 +1,15 @@
-###The problem
+### The problem
+
 If you have **n** unique items and choose **k** of them without replacement, and you *don't care about the order* in which they were selected (e.g. jackpot lottery numbers), then the number of ways to form such **combinations** is
 ![Binomial coefficients](binomial_coefficients.png)
-These values are also known as *binomial coefficients*.
+
+These values are also known as **binomial coefficients**.
 
 For example, the number of 5-card hands you can draw from a 52-card deck is
 
 ![C(52, 5)](poker_hands.png)
 
-If your application requires many values for *C(n,k)*, then you care about efficiency.  If we calculate the value of *C(n,k)* every time we needed it, we encounter a number of potential inefficiencies:
+If your application requires many values for *C(n,k)*, then efficiency is a serious concern.  If we calculate the value of *C(n,k)* every time we needed it, we encounter a number of potential inefficiencies:
 
  - Calling a function to compute a factorial directly is inefficient
  - Representing large integers in memory can be challenging
@@ -15,15 +17,18 @@ If your application requires many values for *C(n,k)*, then you care about effic
  
 ---
 
-###An efficient solution
+### An efficient solution
 
 There is an extremely fast and efficient way to pre-compute a lookup table for the values of *C(n,k)*.  It doesn't require any factorials, and it doesn't require any multiplications or division.  However, it *does* require that we compute **all** of the values of *C(n,k)* up to some maximum *n* value we may need.
 
 What is this computational magic?
 
-**Pascal's triangle**.   Pascal's triangle contains every one of the values of *C(n,k)*, and each row can be computed from the previous row using only sums.  Really.
+**Pascal's triangle**.   Pascal's triangle contains every one of the values of *C(n,k)*, and each row can be computed from the previous row using only sums.
+
 ![Pascal's triangle image](pascal.png)
+
 etc....
+
 ---
 
 The Python code presented here in module "combination_table.py" provides a class to implement this lookup table for *C(n,k)*.
@@ -33,7 +38,7 @@ In general, you import the python module "combination_table", and then create an
 ```python
 >>> from combination_table import CombinationTable
 >>> from time import time
->>> start=time() ; cnk=CombinationTable(1000); print(time()-start)
+>>> start = time() ; cnk = CombinationTable(1000); print(time() - start)
 0.04801654815673828
 >>> # WOW, that was fast!!!
 >>> print(cnk.combination(1000, 500))
