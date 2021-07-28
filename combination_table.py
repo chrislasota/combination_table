@@ -13,6 +13,12 @@ class CombinationTable():
         created very quickly without factorials using Pascal's triangle
     """
 
+    def __new__(cls, max_size: int):
+        if max_size < 0:
+            raise Exception("Cannot create CombinationTable(n) object because n < 0")
+        else:
+            return super().__new__(cls)
+
     def __init__(self, max_size: int) -> None:
         self._max_size = max_size
         self._combo_table = []
