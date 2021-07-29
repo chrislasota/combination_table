@@ -25,6 +25,8 @@ class CombinationTable():
         self._build_table()
 
     def _build_table(self) -> None:
+        if self._combo_table != []:     # Ensure table is built only once
+            return
         pascal_row = [1]
         self._combo_table.append(pascal_row)
         endcap = [0]
