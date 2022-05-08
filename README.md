@@ -1,5 +1,7 @@
 ### The problem
 
+Do you need a way to generate a large number of combinatorial values even faster than Python's ``math.comb()`` method?
+
 If you have **n** unique items and choose **k** of them without replacement, and you *don't care about the order* in which they were selected (e.g. jackpot lottery numbers), then the number of ways to form such **combinations** is
 
 ![Binomial coefficients](binomial_coefficients.png)
@@ -15,7 +17,9 @@ If your application requires many values for *C(n,k)*, then efficiency is a seri
  - Calling a function to compute a factorial directly is inefficient
  - Representing large integers in memory can be challenging
  - Even though *C(n,k)* is guaranteed to produce an integer, computing it using floating point math may introduce problems.
- 
+
+Although Python's ``math`` module can quickly provide these values with the ``math.comb()`` method, *it is possible to generate results even faster* by using a clever method to generate a lookup table.
+
 ---
 
 ### An efficient solution
@@ -29,6 +33,8 @@ What is this computational magic?
 ![Pascal's triangle image](pascal.png)
 
 etc....
+
+Creating a lookup table for combinations up a maximum value of *N*  will require us to store *(N+1)(N+2)/2*  integers in memory, and we will have to spend a little bit of time up front to do so.  But once the table is created, acquiring a particular *C(n,k)* value will only require constant time *O(1)* for lookups.
 
 ---
 
