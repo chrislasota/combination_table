@@ -74,7 +74,7 @@ Using math.comb()...
 Elapsed time to compute 10000 random values of C(n,k) for max_N = 3000 : 2.3813798427581787 seconds
 ```
 
-As you can see, if you can afford the memory and a small set-up time, you can gain significant speedup using a lookup table to obtain values of *C(n,k)*.
+As you can see, if you can afford the memory and a small set-up time, you can gain significant speedup using a lookup table to obtain values of *C(n,k)*. The ultimate source of this speedup is the ability to easily compute the lookup table using Pascal's triangle.
 
 
 
