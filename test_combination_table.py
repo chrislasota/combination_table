@@ -42,5 +42,3 @@ if __name__ == '__main__':
     stop_time = time.time()
     print("Using math.comb()...")
     print(f"Elapsed time to compute {num_trials} random values of C(n,k) for max_N = {max_N} : {stop_time - start_time} seconds")
-
-

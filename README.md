@@ -60,7 +60,7 @@ Import the python module "**combination_table**", and then create an instance of
 >>> # Feel free to try and "break" it by using *n < 0*, *n > max_N*, or *k < 0*
 ```
 
-Use the **`test_combination_table.py`** file to run a comparison of the time required to compute 10000 values of *C(n,k)* where the *n >= k* values are chosen at random, for a maximum *n* value of 3000.
+Use the **`test_combination_table.py`** file to run a comparison of the time required generate many values of *C(n,k)* where the *n >= k* values are chosen at random, for some maximum *n* value.  Typical results below...
 
 ```
 $ python test_combination_table.py
