@@ -55,8 +55,6 @@ Import the python module "**combination_table**", and then create an instance of
 495
 >>> print(cnk.combination(0, 0))
 1
->>> print(cnk.combination(10, 35)
-0
 >>> # Feel free to try and "break" it by using *n < 0*, *n > max_N*, or *k < 0*
 ```
 
