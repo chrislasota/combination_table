@@ -44,10 +44,7 @@ Import the python module "**combination_table**", and then create an instance of
 
 ```python
 >>> from combination_table import CombinationTable
->>> from time import time
->>> start = time() ; cnk = CombinationTable(1000); print(time() - start)
-0.04801654815673828
->>> # WOW, that was fast!!!
+>>> cnk = CombinationTable(1000)
 >>> print(cnk.combination(1000, 500))
 270288240945436569515614693625975275496152008446548287007392875106625428705522193898612483924502370165362606085021546104802209750050679917549894219699518475423665484263751733356162464079737887344364574161119497604571044985756287880514600994219426752366915856603136862602484428109296905863799821216320
 >>> print(cnk.combination(52, 5))
@@ -58,15 +55,26 @@ Import the python module "**combination_table**", and then create an instance of
 495
 >>> print(cnk.combination(0, 0))
 1
->>> # now try to break it...
->>> print(cnk.combination(1001, 1)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<redacted>/combination_table.py", line 34, in combination
-    f"n must be between 0 and {self._max_size}")
-Exception: Error in combination(n,k) : n must be between 0 and 1000
+>>> print(cnk.combination(10, 35)
+0
+>>> # Feel free to try and "break" it by using *n < 0*, *n > max_N*, or *k < 0*
 ```
-Notice that the time taken to create and populate a very large lookup table is *extremely short* compared to the time required if factorials, multiplication, or division were used.  If you can afford the memory space, then it becomes amazingly efficient -- in Python -- to pre-compute **all** of the *C(n,k)* values you might need and save them in a lookup table rather than computing individual ones as they are needed.
 
-Included in this repository is a Python file "**test_combination_table.py**" to output all of the values of *C(n,k)* up to some MAX_N value set in the file.
+Use the **`test_combination_table.py`** file to run a comparison of the time required to compute 10000 values of *C(n,k)* where the *n >= k* values are chosen at random, for a maximum *n* value of 3000.
+
+```
+$ python test_combination_table.py
+Running timed tests comparing combination_table.combination() to math.comb()
+
+Using CombinationTable...
+Elapsed time to initialize the lookup table for max_N = 3000 : 0.717766523361206 seconds
+Elapsed time to compute 10000 random values of C(n,k) for max_N = 3000 : 0.022130489349365234 seconds
+
+Using math.comb()...
+Elapsed time to compute 10000 random values of C(n,k) for max_N = 3000 : 2.3813798427581787 seconds
+```
+
+As you can see, if you can afford the memory and a small set-up time, you can gain significant speedup using a lookup table to obtain values of *C(n,k)*.
+
+
 
