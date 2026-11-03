@@ -2,7 +2,7 @@
 #
 # Author: Chris LaSota
 # Incept Date: July 24, 2021
-# Latest Mod : May 07, 2022
+# Latest Mod : Nov 2, 2026
 
 
 class CombinationTable():
@@ -14,8 +14,11 @@ class CombinationTable():
 
         Usage example:
             import combination_table as ct
-            A = ct.CombinationTable(52)
-            print(f"There are {A.combination(52,5)} different 5-card poker hands")
+            a = ct.CombinationTable(52)
+            print(f"There are {a.combination(52,5)} different 5-card poker hands")
+
+        Update: 11/2/2026 -- now only builds the "left" half of Pascal's triangle
+                             to save on memory, and uses fact that C(N,k) = C(N,N-k)
     """
 
     def __init__(self, max_N: int) -> None:
@@ -60,4 +63,6 @@ class CombinationTable():
         if k < 0:
             raise ValueError(f"Error in combination(n,k) : "
                              + f"k must be non-negative")
+        if k > n/2:
+            k = n - k
         return self._combo_table[n][k]
